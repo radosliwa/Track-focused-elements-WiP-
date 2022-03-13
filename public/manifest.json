@@ -1,0 +1,16 @@
+{
+    "name": "Track focused element",
+    "description": "Logs focused DOM element and applies background if needed",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Open the popup"
+    },
+    "icons": {
+
+    },
+    "permissions": [
+        "activeTab"
+    ]
+}
