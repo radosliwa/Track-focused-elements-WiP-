@@ -7,10 +7,11 @@
         "default_popup": "index.html",
         "default_title": "Open the popup"
     },
-    "icons": {
-
-    },
-    "permissions": [
-        "activeTab"
-    ]
+    "icons": {},
+    "permissions": ["activeTab"],
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "exclude_matches": ["http://localhost/*", "https://localhost/*"],
+        "js": ["content_scripts.js"]
+    }]
 }

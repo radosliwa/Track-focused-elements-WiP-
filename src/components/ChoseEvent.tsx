@@ -17,8 +17,6 @@ const ChoseEventPropTypes = {
 };
 
 export const ChoseEvent = ({ emitEvent }: InferProps<typeof ChoseEventPropTypes>) => {
-  // get selected value
-
   return (
     <section className="chose-event">
       <h2>Chose Event</h2>

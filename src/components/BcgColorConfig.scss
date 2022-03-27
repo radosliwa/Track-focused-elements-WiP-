@@ -1,0 +1,32 @@
+.background-config {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.background-colors {
+    &-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+        cursor: pointer;
+    }
+    &-list.opened>li {
+        // display: none;
+    }
+}
+
+.color-item {
+    // display: none;
+    &-active {
+        // display: none;
+    }
+}

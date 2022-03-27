@@ -1,10 +1,11 @@
 import React from "react";
+import "./FocusedPanel.scss";
 
 export const FocusedPanel = () => {
   return (
     <section className="focused-panel">
       <h2>FOCUSED ELEMENT:</h2>
-      <textarea className="focused-panel__textarea" placeholder="Type something..." rows={10} cols={50} />
+      <div className="focused-panel-screen"></div>
     </section>
   );
 };
