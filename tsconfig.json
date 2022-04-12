@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es6",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ES2015", "ESNext","ES2015.Promise"],
     "types": ["vite/client","chrome" ],
     "allowJs": true,
     "skipLibCheck": false,

@@ -1,41 +1,58 @@
 import React from "react";
-
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ChoseEvent } from "./components/ChoseEvent";
 import { FocusedPanel } from "./components/FocusedPanel";
 import { BcgColorConfig } from "./components/BcgColorConfig";
 import "./App.css";
+// UI
+import { CssBaseline } from "@mui/material";
+import { Context } from "./store/AppProvider";
 
 function App() {
-  const [selectedEvent, setSelectedEvent] = useState("");
-  const [response, setResponse] = useState("");
+  const value = useContext(Context);
+  const [trackedValue, setTrackedValue] = useState(value.trackedTarget);
+  // const [response, setResponse] = useState("");
 
-  const handleSelectedEvent = (event: Event): void => {
-    const emittedValue = (event.target as HTMLSelectElement).value;
-    setSelectedEvent(emittedValue);
-  };
+  // const handleEventSelection = (event: string): void => {
+  //   setSelectedTarget(event);
+  // };
 
+  console.log("value in app", value);
   useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.tabs.sendMessage(tabs[0].id as number, { greeting: "hello" }, function (response) {
-        console.log("response: ", response?.farewell ?? "no response");
-        setResponse(response?.farewell ?? "no response");
-      });
-    });
-  }, []);
+    /* @TODO  send:
+    type of event,
+    selected color,
+    let queryOptions = { active: true, currentWindow: true };
+    tabId
+    */
+    // chrome.tabs.query({ active: true, currentWindow: true }, (tabs: chrome.tabs.Tab[]) => {
+    //   const [tab] = tabs;
+    //   const obj = {
+    //     event: selectedTarget,
+    //     color: "red",
+    //     tabId: tab.id,
+    //   };
+    //   chrome.tabs.sendMessage(tab.id as number, obj, (response) => {
+    //     setResponse(response ?? "no response");
+    //   });
+    // });
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Track Focused Element</h1>
-      </header>
-      <p>{selectedEvent}</p>
-      <p>{response}</p>
-      <main>
-        <ChoseEvent emitEvent={handleSelectedEvent} />
-        <FocusedPanel />
-        <BcgColorConfig />
-      </main>
-    </div>
+    <>
+      <CssBaseline />
+      <div id="App">
+        <header className="App-header">
+          <h1>Track Focused Element!</h1>
+
+          <p>{JSON.stringify(value)}</p>
+        </header>
+        <main>
+          <ChoseEvent />
+          <FocusedPanel />
+          <BcgColorConfig />
+        </main>
+      </div>
+    </>
   );
 }
 

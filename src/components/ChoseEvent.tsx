@@ -1,5 +1,6 @@
-import React from "react";
-import PropTypes, { InferProps } from "prop-types";
+import React, { useContext } from "react";
+import { Context } from "../store/AppProvider";
+import { Select, MenuItem } from "@mui/material";
 
 type TOption = {
   label: string;
@@ -7,28 +8,28 @@ type TOption = {
 };
 
 const options: TOption[] = [
-  { label: "Select tracking trigger", value: "" },
-  { label: "Click", value: "click" },
-  { label: "Keypress", value: "keypress" },
+  { label: "Choose", value: "Choose" },
+  { label: "Event target", value: "event target" },
+  { label: "Current target", value: "current target" },
 ];
 
-const ChoseEventPropTypes = {
-  emitEvent: PropTypes.func.isRequired,
-};
+export const ChoseEvent = () => {
+  const { setTrackedTarget } = useContext(Context);
 
-export const ChoseEvent = ({ emitEvent }: InferProps<typeof ChoseEventPropTypes>) => {
   return (
     <section className="chose-event">
-      <h2>Chose Event</h2>
-      <p>
-        <select onChange={(e) => emitEvent(e)}>
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </p>
+      <h2>Chose target to track:</h2>
+      <Select
+        id="chose-event-select"
+        defaultValue={"Choose"}
+        onChange={(e) => setTrackedTarget(e.target.value as string)}
+      >
+        {options.map((option) => (
+          <MenuItem value={option.value} key={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
     </section>
   );
 };
