@@ -1,21 +1,19 @@
-import React, { useCallback, useState } from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/AppProvider";
 import "./BcgColorConfig.scss";
 
-export const BcgColorConfig = () => {
-  const [selectedOption, setSelectedOption] = useState("red");
+const options: Record<"label" | "value", string>[] = [
+  { label: "red", value: "red" },
+  { label: "green", value: "green" },
+  { label: "blue", value: "blue" },
+];
+// type react funct
+export const BcgColorConfig: React.FC = () => {
+  const { setTrackedTargetBcgColor, trackedTargetBcgColor } = useContext(Context);
   const [isOpen, setIsOpen] = useState(false);
-  console.log("BcgColorConfig");
-
-  const options: Record<"label" | "value", string>[] = [
-    { label: "red", value: "red" },
-    { label: "green", value: "green" },
-    { label: "blue", value: "blue" },
-  ];
-
-  const toggling = () => setIsOpen(!isOpen);
 
   const onOptionClicked = (value: string) => {
-    setSelectedOption(value);
+    setTrackedTargetBcgColor(value);
     setIsOpen(false);
   };
 
@@ -27,12 +25,12 @@ export const BcgColorConfig = () => {
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
-        {!isOpen && <li>{selectedOption}</li>}
+        {!isOpen && <li>{trackedTargetBcgColor}</li>}
         {isOpen &&
           options.map((option) => (
             <li
               key={option.value}
-              className={selectedOption === option.value ? "color-item-active" : "color-item"}
+              className={trackedTargetBcgColor === option.value ? "color-item-active" : "color-item"}
               onClick={() => onOptionClicked(option.value)}
             >
               {option.label}

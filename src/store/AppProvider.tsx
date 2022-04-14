@@ -1,5 +1,6 @@
 import { createContext, useState, useReducer, useContext } from "react";
-enum ACTION_TYPE {
+
+enum ACTION_KEYS {
   SET_TRACKED_TARGET = "SET_TRACKED_TARGET",
   SET_TARGET_BCG_COLOR = "SET_TARGET_BCG_COLOR",
 }
@@ -10,9 +11,8 @@ interface IState {
   setTrackedTarget: (trackedTarget: string) => void;
   setTrackedTargetBcgColor: (trackedTargetBcgColor: string) => void;
 }
-
 interface IReducerAction {
-  type: keyof typeof ACTION_TYPE;
+  type: keyof typeof ACTION_KEYS;
   payload: string;
 }
 
@@ -26,12 +26,12 @@ const initialState: IState = {
 export const reducer = (state: IState, action: IReducerAction): IState => {
   const { type, payload } = action;
   switch (type) {
-    case ACTION_TYPE.SET_TRACKED_TARGET:
+    case ACTION_KEYS.SET_TRACKED_TARGET:
       return {
         ...state,
         trackedTarget: payload,
       };
-    case ACTION_TYPE.SET_TARGET_BCG_COLOR:
+    case ACTION_KEYS.SET_TARGET_BCG_COLOR:
       return {
         ...state,
         trackedTargetBcgColor: payload,
@@ -48,11 +48,11 @@ const createValueForProvider = (initialState: IState): IState => {
   return {
     ...state,
     setTrackedTarget: (trackedTarget: string): void => {
-      dispatch({ type: ACTION_TYPE.SET_TRACKED_TARGET, payload: trackedTarget });
+      dispatch({ type: ACTION_KEYS.SET_TRACKED_TARGET, payload: trackedTarget });
     },
     setTrackedTargetBcgColor: (trackedTargetBcgColor: string): void => {
       dispatch({
-        type: ACTION_TYPE.SET_TARGET_BCG_COLOR,
+        type: ACTION_KEYS.SET_TARGET_BCG_COLOR,
         payload: trackedTargetBcgColor,
       });
     },

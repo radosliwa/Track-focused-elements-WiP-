@@ -8,14 +8,8 @@ import "./App.css";
 import { CssBaseline } from "@mui/material";
 import { Context } from "./store/AppProvider";
 
-function App() {
+const App: React.FC = () => {
   const value = useContext(Context);
-  const [trackedValue, setTrackedValue] = useState(value.trackedTarget);
-  // const [response, setResponse] = useState("");
-
-  // const handleEventSelection = (event: string): void => {
-  //   setSelectedTarget(event);
-  // };
 
   console.log("value in app", value);
   useEffect(() => {
@@ -54,6 +48,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;

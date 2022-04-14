@@ -13,7 +13,7 @@ const options: TOption[] = [
   { label: "Current target", value: "current target" },
 ];
 
-export const ChoseEvent = () => {
+export const ChoseEvent: React.FC = () => {
   const { setTrackedTarget } = useContext(Context);
 
   return (
