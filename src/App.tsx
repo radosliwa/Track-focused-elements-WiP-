@@ -1,17 +1,41 @@
 import React from "react";
+// hooks
 import { useContext, useEffect, useState } from "react";
+import { Context } from "./store/AppProvider";
+
+// components
 import { ChoseEvent } from "./components/ChoseEvent";
 import { FocusedPanel } from "./components/FocusedPanel";
 import { BcgColorConfig } from "./components/BcgColorConfig";
+
+// MUI
+import { CssBaseline, ListItemSecondaryAction, Typography } from "@mui/material";
+
 import "./App.css";
-// UI
-import { CssBaseline } from "@mui/material";
-import { Context } from "./store/AppProvider";
+import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1976d2",
+    },
+    secondary: {
+      main: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: "'Open Sans', sans-serif",
+    h1: {
+      fontSize: "2rem",
+    },
+  },
+});
+theme = responsiveFontSizes(theme);
+
+const { palette } = theme;
 
 const App: React.FC = () => {
   const value = useContext(Context);
-
-  console.log("value in app", value);
   useEffect(() => {
     /* @TODO  send:
     type of event,
@@ -32,12 +56,13 @@ const App: React.FC = () => {
     // });
   });
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div id="App">
+      <div id="App" style={{ backgroundColor: palette.primary.light, color: palette.secondary.main }}>
         <header className="App-header">
-          <h1>Track Focused Element!</h1>
-
+          <Typography variant="h1" style={{ fontWeight: 600 }}>
+            Track Focused Element!
+          </Typography>
           <p>{JSON.stringify(value)}</p>
         </header>
         <main>
@@ -46,7 +71,7 @@ const App: React.FC = () => {
           <BcgColorConfig />
         </main>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 
