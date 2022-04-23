@@ -9,7 +9,7 @@ import { FocusedPanel } from "./components/FocusedPanel";
 import { BcgColorConfig } from "./components/BcgColorConfig";
 
 // MUI
-import { CssBaseline, ListItemSecondaryAction, Typography } from "@mui/material";
+import { CssBaseline, Typography } from "@mui/material";
 
 import "./App.css";
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
