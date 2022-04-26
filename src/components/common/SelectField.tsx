@@ -26,14 +26,15 @@ interface IProps {
     defaultValue: string;
     onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     options: TOption[];
+    styles?: null | Record<string, any>;
 }
 
-export const SelectField = ({ error, label, value, handleClickAway, defaultValue, onChangeHandler, options }: IProps) => {
+export const SelectField = ({ error, label, value, handleClickAway, defaultValue, onChangeHandler, options, styles = null }: IProps) => {
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <TextField
                 label={label}
-                sx={textFieldStyle}
+                sx={{ ...textFieldStyle, ...styles }}
                 select
                 fullWidth
                 error={error}
