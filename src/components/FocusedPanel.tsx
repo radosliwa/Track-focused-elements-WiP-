@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./FocusedPanel.scss";
 import { Box } from "@mui/material";
 import { Context } from "../store/AppProvider";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 // focused panel styles
 const focusedPanelStyle = {
@@ -19,16 +19,11 @@ const focusedPanelStyle = {
 
 export const FocusedPanel = () => {
   const { trackedTargetBcgColor } = useContext(Context);
-
-  const [borderColor, setBorderColor] = useState({ border: `2px solid #fff` });
-
-  useEffect(() => {
-    setBorderColor({ border: `2px solid ${trackedTargetBcgColor}` });
-  }, [trackedTargetBcgColor])
   return (
     <section className="focused-panel">
       <h2>FOCUSED ELEMENT:</h2>
-      <Box sx={{ ...focusedPanelStyle, ...borderColor }}></Box>
+
+      <Box sx={{ ...focusedPanelStyle, ...{ border: `2px solid ${trackedTargetBcgColor}` } }}></Box>
     </section>
   );
 };
