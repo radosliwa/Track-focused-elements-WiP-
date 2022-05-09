@@ -13,14 +13,9 @@ const options: TOption[] = [
 
 export const ChoseEvent = () => {
   const { setTrackedTarget, trackedTarget } = useContext(Context);
-  const [error, setError] = useState(false);
-  const handleClickAway = () => {
-    setError(!trackedTarget ? true : false);
-  };
-
   return (
     <section className="chose-event">
-      <SelectField error={error} label={PLACEHOLDER} value={trackedTarget} handleClickAway={handleClickAway} defaultValue={PLACEHOLDER} onChangeHandler={(e) => setTrackedTarget(e.target.value)} options={options} />
+      <SelectField label={PLACEHOLDER} value={trackedTarget} defaultValue={PLACEHOLDER} onChangeHandler={(e) => setTrackedTarget(e.target.value)} options={options} />
     </section>
   );
 };
